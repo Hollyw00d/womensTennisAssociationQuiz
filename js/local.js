@@ -1,69 +1,149 @@
-// Anonymous function
-(function() {
+// jQuery Document Ready
+$(function(){
 
-	// jQuery Document Ready
-	$(function(){
+  // Set year in footer
+  function getyear() {
+    // Get current year
+    var getdate = new Date();
+    var getyear = getdate.getFullYear();
 
-		// Set year in footer
-		function getyear() {
-			// Get current year
-			var getdate = new Date();
-			var getyear = getdate.getFullYear();
+    // In footer set year to current year
+    var currentyear = $("#copyright").find("span").text(getyear);
+  }
+  getyear();
 
-			// In footer set year to current year
-			var currentyear = $("#copyright").find("span").text(getyear);
-		}
-		getyear();
+  // Assign public variables to the question and answer text to be instantiated later
+  function AddQuizQuestionsAnswersText(questionText, answer1, answer2, answer3, answer4) {
 
-		/*
-		get list items from [input] element and set to [ul > li] elements after pressing [Enter] on keyboard
-		*/
+    this.questionText = questionText;
+    this.answer1 = answer1;
+    this.answer2 = answer2;
+    this.answer3 = answer3;
+    this.answer4 = answer4;
+  }
 
-		function getSetCrossoffRemoveListItems() {
+  // Use prototype to pull the questions and answers text from the
+  // "AddQuizQuestionsAnswersText" class and assign
+  // insert them into the DOM via the "GetQuizElements" prototype
+  AddQuizQuestionsAnswersText.prototype.GetQuizElements = function() {
+    this.questionElem = $("#quiz-question");
+    this.answer1Elem = $("ol").find("li").first().find("span");
+    this.answer2Elem = $("ol").find("li").first().next().find("span");
+    this.answer3Elem = $("ol").find("li").last().prev().find("span");
+    this.answer4Elem = $("ol").find("li").last().find("span");
 
-			// ul#list-output list item container
-			var listOutput = $("#list-output");
-			// list items inside ul#list-output
-			// var listItem = listOutput.find("li");
+    // Method to insert question and answer text into DOM elements
+    return this.assignQuizData = function() {
+      this.questionElem.html(this.questionText);
+      this.answer1Elem.html(this.answer1);
+      this.answer2Elem.html(this.answer2);
+      this.answer3Elem.html(this.answer3);
+      this.answer4Elem.html(this.answer4);
+    }
+  }
 
-			// Add list items when pressing [Enter] key
-			$("#type-text-here").on("keypress", function(event) {
+  var showQuestion1 = new AddQuizQuestionsAnswersText(
+        // Question
+        "Which active tennis player has won the most singles grand slams?",
+          // 4 multiple choice answers
+          "Serena Williams",
+          "Martina Navratilova",
+          "Venus Williams",
+          "Steffi Graf"
+  );
 
-				if (event.which == "13") {
-					event.preventDefault();
+  var showQuestion2 = new AddQuizQuestionsAnswersText(
+        // Question
+        "Which African American first won three singles grand slams?",
+          // 4 multiple choice answers
+          "Althea Gibson",
+          "Venus Williams",
+          "Sloane Stephens",
+          "Serena Williams"
+  );
 
-					// Get [input] text variable
-					var listItemInput = $(this).val();
+  var showQuestion3 = new AddQuizQuestionsAnswersText(
+        // Question
+        "Who is only one person to have won a singles Gold Slam, or the all four major grand slam events (Australian, French, Wimbledon and US) AND an Olympic Gold Medal in the same tennis season?",
+          // 4 multiple choice answers
+          "Margaret Court",
+          "Chris Evert",
+          "Serena Williams",
+          "Steffi Graf"
+  );
 
-					// Create the list item & click event to cross off individual list item
-					var task = $("<li>").html(listItemInput).attr("class", "pending").on("click", function() {
-						if($(this).hasClass("pending")) {
-							$(this).removeClass("pending").addClass("done");
-						} else {
-							$(this).removeClass("done").addClass("pending");
-						}
-					});
+  var showQuestion4 = new AddQuizQuestionsAnswersText(
+        // Question
+        "Who is the youngest person to have won her first grand slam?",
+          // 4 multiple choice answers
+          "Monica Seles",
+          "Tracy Austin",
+          "Martina Hingis",
+          "Maria Sharapova"
+  );
 
-					listOutput.append(task);
 
-					// After adding new list item replace input[value] attribute with an empty string
-					$(this).val("");
-				}
 
-			});
 
-			// [Reset List] button to remove all list items
-			$("#reset-list").on("click", function(event) {
-				event.preventDefault();
-				listOutput.html("");
-			});
 
-		}
 
-		getSetCrossoffRemoveListItems();
 
-	// End Document Ready
-	});
 
-// End Anonymous Function
-})();
+
+
+  var showQuestion5 = new AddQuizQuestionsAnswersText(
+        // Question
+        "Who has the record for winning the most WTA matches in a row",
+        // 4 multiple choice answers
+        "Steffi Graf",
+        "Martina Navratilova",
+        "Chris Evert",
+        "Margaret Court"
+  );
+
+
+  showQuestion1.GetQuizElements();
+  showQuestion1.assignQuizData();
+
+
+
+
+
+
+
+
+  /*
+
+  Q1:  Which active tennis player has won the most grand slams?
+
+  A. Serena Williams
+
+  B. Maria Sharapova
+
+  C. Venus Williams
+
+  D. Steffi Graf
+
+   */
+
+
+
+
+  //cat.prototype.changeName = function(name) {
+  //  this.name = name;
+  //}
+  //
+  //firstCat = new cat("pursur")
+  //firstCat.changeName("Bill")
+  //firstCat.talk() //alerts "Bill says meeow!"
+
+
+
+
+
+
+
+
+
+// End Document Ready
+});
