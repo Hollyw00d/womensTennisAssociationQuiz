@@ -12,6 +12,21 @@ $(function(){
   }
   getyear();
 
+
+  function QuestionCountCorrect() {
+    // Question and answers correct count
+    this.questionCount = 1;
+    this.questionCorrect = 0;
+    // Questions correct and count elements
+    this.questionCountElem = $("#question-count");
+    this.questionCorrectElem = $("#questions-correct");
+    // Correct and incorrect error messages
+    this.correct = $("#correct");
+    this.incorrect = $("#incorrect");
+  }
+
+  var getQuestionCountCorrect = new QuestionCountCorrect();
+
   // Assign public variables to the question and answer text to be instantiated later
   function AddQuizQuestionsAnswersText(questionText, answer1, answer2, answer3, answer4) {
 
@@ -20,6 +35,7 @@ $(function(){
     this.answer2 = answer2;
     this.answer3 = answer3;
     this.answer4 = answer4;
+
   }
 
   // Use prototype to pull the questions and answers text from the
@@ -98,55 +114,43 @@ $(function(){
   showQuestion1.assignQuizData();
 
 
+  // Check answers, keep score and move to the next question when clicking "Submit" button
+  $("#submit-answer").on("click", function(event) {
+    event.preventDefault();
+    var correct = getQuestionCountCorrect.correct;
+    var incorrect = getQuestionCountCorrect.incorrect;
+    var questionCorrect = getQuestionCountCorrect.questionCorrect;
+    var questionCorrectElem = getQuestionCountCorrect.questionCorrectElem;
 
-
+    if(showQuestion1 instanceof AddQuizQuestionsAnswersText) {
+      // If Correct Answer Choosen is Question 1, Answer A, Serena Williams
+      if($("input[name='selected-answer']:eq(0)").is(":checked")) {
+        correct.removeClass("hide");
+        incorrect.addClass("hide");
+        questionCorrect++;
+        questionCorrectElem.html(questionCorrect);
+      } else {
+        incorrect.removeClass("hide");
+        correct.addClass("hide");
+      }
+    }
+  });
 
   // Reset back to Question 1 when clicking "Reset" button
   $("#reset").on("click", function(event) {
+    getQuestionCountCorrect = new QuestionCountCorrect();
     event.preventDefault();
     showQuestion1.GetQuizElements();
     showQuestion1.assignQuizData();
+    getQuestionCountCorrect.correct.addClass("hide");
+    getQuestionCountCorrect.incorrect.addClass("hide");
+    $("input:radio").attr("checked", false);
+    getQuestionCountCorrect.questionCountElem = 1;
+    getQuestionCountCorrect.questionCountElem.html("1");
+    getQuestionCountCorrect.questionCorrectElem = 0;
+    getQuestionCountCorrect.questionCorrectElem.html("0");
+
   });
-
-
-
-
-
-
-
-
-  /*
-
-  Q1:  Which active tennis player has won the most grand slams?
-
-  A. Serena Williams
-
-  B. Maria Sharapova
-
-  C. Venus Williams
-
-  D. Steffi Graf
-
-   */
-
-
-
-
-  //cat.prototype.changeName = function(name) {
-  //  this.name = name;
-  //}
-  //
-  //firstCat = new cat("pursur")
-  //firstCat.changeName("Bill")
-  //firstCat.talk() //alerts "Bill says meeow!"
-
-
-
-
-
-
-
-
 
 // End Document Ready
 });

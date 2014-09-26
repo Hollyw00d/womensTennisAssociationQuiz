@@ -73,6 +73,20 @@ a:hover, a:active
 	text-decoration: none;
 }
 
+.hide {
+  display: none;
+}
+
+/*Show green text*/
+#correct {
+  color: #07fa07;
+}
+
+/*Show read text*/
+#incorrect {
+  color: #fe0002;
+}
+
 
 /* Clearfix */
 .clearfix:after  { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
