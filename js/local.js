@@ -64,7 +64,7 @@ $(function(){
 
   var showQuestion3 = new AddQuizQuestionsAnswersText(
         // Question
-        "Who is only one person to have won a singles Gold Slam, or the all four major grand slam events (Australian, French, Wimbledon and US) AND an Olympic Gold Medal in the same tennis season?",
+        "Who is only one person to have won a singles Gold Slam, or the all four major grand slam events (Australian, French, Wimbledon and US) AND an Olympic Gold Medal in a row?",
           // 4 multiple choice answers
           "Margaret Court",
           "Chris Evert",
@@ -82,18 +82,9 @@ $(function(){
           "Maria Sharapova"
   );
 
-
-
-
-
-
-
-
-
-
   var showQuestion5 = new AddQuizQuestionsAnswersText(
         // Question
-        "Who has the record for winning the most WTA matches in a row",
+        "Who has the record for winning the most WTA matches in a row?",
         // 4 multiple choice answers
         "Steffi Graf",
         "Martina Navratilova",
@@ -102,8 +93,20 @@ $(function(){
   );
 
 
+  // Show Question 1 on DOM ready
   showQuestion1.GetQuizElements();
   showQuestion1.assignQuizData();
+
+
+
+
+
+  // Reset back to Question 1 when clicking "Reset" button
+  $("#reset").on("click", function(event) {
+    event.preventDefault();
+    showQuestion1.GetQuizElements();
+    showQuestion1.assignQuizData();
+  });
 
 
 
