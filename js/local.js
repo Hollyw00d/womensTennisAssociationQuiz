@@ -1,4 +1,4 @@
-// jQuery Document Ready
+// jQuery Document Ready 
 $(function(){
 
   // Set year in footer
