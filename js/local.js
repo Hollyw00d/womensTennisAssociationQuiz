@@ -8,14 +8,17 @@ $(function(){
     var getyear = getdate.getFullYear();
 
     // In footer set year to current year
-    var currentyear = $("#copyright").find("span").text(getyear);
+   $("#copyright").find("span").text(getyear);
   }
   getyear();
+
+
 
   // Object with multiiple choice question,
   // choices (w/ a value as an array) and
   // answer properties
-  var allQuestions = [
+  var questionsBank = [
+
     {
       question: "Which active tennis player has won the most singles grand slams?",
       choices: [
@@ -62,16 +65,52 @@ $(function(){
       answer: "Serena Williams"
     }
   ];
-  console.log(allQuestions[4].choices[2]);
 
+  var quiz = $("#quiz");
+  var quizQuestion = $("#quiz-question")
 
-  
+  var testSize = 5;
+  var multipleChoiceSize = 4;
+
+  function TestQuestion() {
+
+    this.insert = function (selection) {
+        quizQuestion.append(questionsBank[selection].question);
+        for(i = 0; i < multipleChoiceSize; i++) {
+          quiz.append("<li>" + questionsBank[selection].choices[i] + "</li>");
+        }
+
+    };
+
+  }
+
+//  console.log(questionsBank[0].question);
+
+  // Question count
+  var currentQuestion = 0;
+
+  // Insert first question
+  var addQuestion = new TestQuestion();
+  addQuestion.insert(0);
 
 
   // Check answers, keep score and move to the next question when clicking "Submit" button
   $("#submit-answer").on("click", function(event) {
     event.preventDefault();
     // Coming soon!
+
+
+    if(currentQuestion < testSize) {
+      currentQuestion++;
+      quiz.empty();
+      quizQuestion.empty();
+      addQuestion.insert(currentQuestion);
+      return false;
+    }
+
+
+
+
 
   });
 
