@@ -67,7 +67,7 @@ $(function(){
   ];
 
   var quiz = $("#quiz");
-  var quizQuestion = $("#quiz-question")
+  var quizQuestion = $("#quiz-question");
 
   var testSize = 5;
   var multipleChoiceSize = 4;
@@ -77,14 +77,13 @@ $(function(){
     this.insert = function (selection) {
         quizQuestion.append(questionsBank[selection].question);
         for(i = 0; i < multipleChoiceSize; i++) {
-          quiz.append("<li>" + questionsBank[selection].choices[i] + "</li>");
+          quiz.append("<li>" + questionsBank[selection].choices[i] + "&nbsp;<input type='radio' name='selected-answer' value='selected-answer" + [i + 1] + "' />" + "</li>");
         }
 
     };
 
   }
 
-//  console.log(questionsBank[0].question);
 
   // Question count
   var currentQuestion = 0;
@@ -93,24 +92,24 @@ $(function(){
   var addQuestion = new TestQuestion();
   addQuestion.insert(0);
 
-
   // Check answers, keep score and move to the next question when clicking "Submit" button
   $("#submit-answer").on("click", function(event) {
     event.preventDefault();
-    // Coming soon!
-
 
     if(currentQuestion < testSize) {
       currentQuestion++;
       quiz.empty();
       quizQuestion.empty();
       addQuestion.insert(currentQuestion);
-      return false;
     }
 
+    return false;
 
+  });
 
-
+  $("input").on("click", function() {
+//    $(this).addClass("radio-select");
+//    $(this).is(":checked") ?
 
   });
 
