@@ -77,7 +77,7 @@ $(function(){
     this.insert = function (selection) {
         quizQuestion.append(questionsBank[selection].question);
         for(i = 0; i < multipleChoiceSize; i++) {
-          quiz.append("<li>" + questionsBank[selection].choices[i] + "</li>");
+          quiz.append("<li>" + questionsBank[selection].choices[i] + "&nbsp;<input type='radio' name='selected-answer' value='selected-answer" + [i + 1] + "' />" + "</li>");
         }
 
     };
