@@ -20,7 +20,8 @@ $(function(){
   var questionsBank = [
 
     {
-      question: "Which active tennis player has won the most singles grand slams?",
+      question: "Which active tennis player has won the most singles grand " +
+          "slams?",
       choices: [
         "Serena Williams",
         "Martina Navratilova",
@@ -38,7 +39,10 @@ $(function(){
       answer: "Althea Gibson"
     },
     {
-      question: "Who is only one person to have won a singles Gold Slam, or the all four major grand slam events (Australian, French, Wimbledon and US) AND an Olympic Gold Medal in a row?",
+      question: "Who is only one person to have won a singles Gold Slam, " +
+          "or the all four major grand slam events " +
+          "(Australian, French, Wimbledon and US) AND " +
+          "an Olympic Gold Medal in a row?",
       choices: [
         "Margaret Court",
         "Chris Evert",
@@ -77,7 +81,9 @@ $(function(){
     this.insert = function (selection) {
         quizQuestion.append(questionsBank[selection].question);
         for(i = 0; i < multipleChoiceSize; i++) {
-          quiz.append("<li>" + questionsBank[selection].choices[i] + "&nbsp;<input type='radio' name='selected-answer' value='selected-answer" + [i + 1] + "' />" + "</li>");
+          quiz.append("<li>" + questionsBank[selection].choices[i] + "&nbsp;" +
+              "<input type='radio' name='selected-answer' " +
+              "value='selected-answer" + [i + 1] + "' />" + "</li>");
         }
 
     };
@@ -92,7 +98,8 @@ $(function(){
   var addQuestion = new TestQuestion();
   addQuestion.insert(0);
 
-  // Check answers, keep score and move to the next question when clicking "Submit" button
+  // Check answers, keep score and move to the next question when
+  // clicking "Submit" button
   $("#submit-answer").on("click", function(event) {
     event.preventDefault();
 
