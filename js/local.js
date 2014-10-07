@@ -85,7 +85,6 @@ $(function(){
               "<input type='radio' name='selected-answer' " +
               "value='selected-answer" + [i + 1] + "' />" + "</li>");
         }
-
     };
 
   }
@@ -115,8 +114,8 @@ $(function(){
   });
 
   $("input").on("click", function() {
-//    $(this).addClass("radio-select");
-//    $(this).is(":checked") ?
+      $(this + ":radio").attr("disabled", true);
+
 
   });
 
