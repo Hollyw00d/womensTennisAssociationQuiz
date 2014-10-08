@@ -109,15 +109,19 @@ $(function(){
       addQuestion.insert(currentQuestion);
     }
 
+    if($("input").is(":checked")) {
+      alert("Blah");
+    }
+
     return false;
 
   });
 
-  $("input").on("click", function() {
-      $(this + ":radio").attr("disabled", true);
-
-
-  });
+//  $("input").on("click", function() {
+//      $(this + ":radio").attr("disabled", true);
+//
+//
+//  });
 
   // Reset back to Question 1 when clicking "Reset" button
   $("#reset").on("click", function(event) {
