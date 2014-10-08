@@ -83,7 +83,7 @@ $(function(){
         for(i = 0; i < multipleChoiceSize; i++) {
           quiz.append("<li>" + questionsBank[selection].choices[i] + "&nbsp;" +
               "<input type='radio' name='selected-answer' " +
-              "value='selected-answer" + [i + 1] + "' />" + "</li>");
+              "value='selected-answer" + [i + 1] + "' data-choice='" + questionsBank[selection].choices[i] + "' />" + "</li>");
         }
     };
 
