@@ -72,9 +72,8 @@ $(function(){
 
   var quiz = $("#quiz");
   var quizQuestion = $("#quiz-question");
-
-  var testSize = 5;
-  var multipleChoiceSize = 4;
+  var testSize = +(questionsBank.length);
+  var multipleChoiceSize = +(questionsBank[0].choices.length);
 
   function TestQuestion() {
 
@@ -107,19 +106,16 @@ $(function(){
       quiz.empty();
       quizQuestion.empty();
       addQuestion.insert(currentQuestion);
-    }
 
-    if($("input").is(":checked")) {
-      alert("Blah");
     }
 
     return false;
 
   });
 
-//  $("input").on("click", function() {
-//      $(this + ":radio").attr("disabled", true);
 //
+//  $("input").on("click", function() {
+//      alert($(this).data("choice"));
 //
 //  });
 
